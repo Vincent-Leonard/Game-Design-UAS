@@ -20,7 +20,7 @@ public class VirusMovement : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, Wpoints.waypoints[waypointsIndex].position, speed);
 
-        if(Vector2.Distance(transform.position, Wpoints.waypoints[waypointsIndex].position) < 0.1f)
+        if (Vector2.Distance(transform.position, Wpoints.waypoints[waypointsIndex].position) < 0.1f)
         {
             waypointsIndex++;
         }
