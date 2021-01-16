@@ -5,42 +5,47 @@ using UnityEngine;
 
 public class area : MonoBehaviour
 {
-    public GameObject prefabVirus;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool isBeingHeld = false;
+    private GameScript mainScript;
 
     // Update is called once per frame
     void Update()
     {
-       if (Input.GetMouseButtonDown(0))
+       if(isBeingHeld == true)
        {
-          var newVirus = Instantiate(prefabVirus);
-          newVirus.transform.position = new Vector2(-8, 4);
+            Vector3 mousePos;
+            mousePos = Input.mousePosition;
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-          RaycastHit  hit;
-          Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-          if (Physics.Raycast(ray, out hit)) {
-                 //if (hit.transform.name == "MyObjectName" )Debug.Log( "My object is clicked by mouse");
-          }
+            this.gameObject.transform.localPosition = new Vector3(mousePos.x, mousePos.y, 0);   
        }
-        //bunyiin suara
-        //SoundController.instance.PlaySound(SFXType.LASER);
+
     }
 
-    void OnMouseDown() 
+    private void OnMouseDown() 
     {
-        //munculin slot
-        //var newVirus = Instantiate(prefabVirus);
+        if(Input.GetMouseButtonDown(0))
+        {
+            //Vector3 mousePos;
+            //mousePos = Input.mousePosition;
+            //mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-        //posisi slot
-        //newVirus.transform.position = new Vector2(5, 5);
+            //isBeingHeld = true;
 
+            var getObject = gameObject.name;
+            float areaPosX = GameObject.Find(getObject).transform.position.x;
+            float areaPosY = GameObject.Find(getObject).transform.position.y;
 
-        //prefabVirus.active = true;
-        //teleporter.SetActive(true);
+            mainScript = GameObject.Find("GameScript").GetComponent<GameScript>();
+            mainScript.OnAreaChosen(areaPosX, areaPosY);
+
+            //bunyiin suara
+            //SoundController.instance.PlaySound(SFXType.LASER);
+        }
+    }
+
+    private void OnMouseUp() 
+    {
+        //isBeingHeld = false;
     }
 }
