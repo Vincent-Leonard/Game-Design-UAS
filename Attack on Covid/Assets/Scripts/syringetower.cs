@@ -1,25 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class syringetower : MonoBehaviour
 {
     public GameObject prefabPeluru;
 
-    float speed;
-    float angle;
-    Vector3 translationVec;
+    private float shootTimerMax;
+    private float shootTimer;
+    private float speed;
+    private float angle;
+    Vector3 moveDir;
     Vector3 direction;
-    static Collider2D test;
+    Collider2D objectCollider;
     bool yourVar;
     int objects;
+    Text txt;
 
     // Start is called before the first frame update
     void Start()
     {
-        //dapatkan komponen Sprire Renderer dari gameobject kita
-        //mySprite = GetComponent<SpriteRenderer>();
         speed = 0.01f;
+        shootTimerMax = 0.5f;
     }
 
     // Update is called once per frame
@@ -27,32 +30,37 @@ public class syringetower : MonoBehaviour
     {
         //bergerak berdasarkan angle
         if(yourVar == true){
-            direction = test.transform.position - transform.position;
-            direction = test.transform.InverseTransformDirection(direction);
+            direction = objectCollider.transform.position - transform.position;
+            direction = objectCollider.transform.InverseTransformDirection(direction);
             angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = rotation;
 
-            translationVec = new Vector3(Mathf.Cos(angle),Mathf.Sin(angle),0); 
-        }
+            moveDir = (objectCollider.transform.position - transform.position).normalized; 
 
-        
+            txt = GameObject.Find("LevelLoader/CrossFade/count").GetComponent<Text>();
+            txt.text = objects + "";
+
+            shootTimer -= Time.deltaTime;
+            if(shootTimer <= 0f)
+            {
+                shootTimer = shootTimerMax;
+                SpawnPeluru();
+            }
+        }    
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         //Event ini terpanggil jika trigger tersentuh collider yang lain
+        objectCollider = other;
+
         objects++;
         if(objects != 0){
             yourVar = true;
         }
-        test = other;
-        
-        //buat peluru
-        if(objects == 1){
-            InvokeRepeating ("SpawnPeluru", 0.0f, 0.5f);
-        }
+    
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -62,13 +70,16 @@ public class syringetower : MonoBehaviour
         if(objects == 0){
             yourVar = false;
         }
+
     }
     
-    void SpawnPeluru()
+    private void SpawnPeluru()
     {
-        //if(yourVar == true){
-            //var peluruBaru = Instantiate(prefabPeluru);
-            //peluruBaru.GetComponent<GerakanPeluru>().TembakDari(transform.localPosition, translationVec);
-        //}
+        var peluruBaru = Instantiate(prefabPeluru);
+        peluruBaru.GetComponent<GerakanPeluru>().TembakDari(transform.localPosition, moveDir);
     }
+
+    //private Enemy GetClosestEnemy() {
+        //return Enemy.GetClosestEnemy(transform.position, range);
+    //}
 }

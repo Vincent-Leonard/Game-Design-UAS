@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GerakanPeluru : MonoBehaviour
 {
-    float speed = 0.01f;
-    Vector3 translationVec;
+    float speed = 0.05f;
+    Vector3 moveDir;
     float BATAS_KANAN = 10f;
     float BATAS_KIRI = -10f;
     float BATAS_ATAS = 5f;
@@ -21,7 +21,7 @@ public class GerakanPeluru : MonoBehaviour
     void Update()
     {
         //gerakan peluru sesuai arahnya
-        transform.localPosition += translationVec * speed;
+        transform.localPosition += moveDir * speed;
 
         if((transform.localPosition.x > BATAS_KANAN) || (transform.localPosition.x < BATAS_KIRI) || (transform.localPosition.y > BATAS_ATAS) || (transform.localPosition.y < BATAS_BAWAH))
         {
@@ -36,7 +36,6 @@ public class GerakanPeluru : MonoBehaviour
         transform.localPosition = new Vector3(posAwal.x, posAwal.y, posAwal.z);
         
         //set arah peluru
-        translationVec = new Vector3(direction.x, direction.y, direction.z);
-        
+        moveDir = new Vector3(direction.x, direction.y, direction.z); 
     }
 }

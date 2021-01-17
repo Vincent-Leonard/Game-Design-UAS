@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Waypoints
   - Virus
+  - Peluru
   layers:
   - Default
   - TransparentFX

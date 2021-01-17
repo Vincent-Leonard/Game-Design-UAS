@@ -55,10 +55,12 @@ public class GameScript : MonoBehaviour
             var newTower2 = Instantiate(prefabTower[1]);
             newTower2.transform.position = new Vector2(areaPositionX, areaPositionY);
         }
-        else
+        if(selected == 2)
         {
-            var newTower = Instantiate(prefabTower[selected]);
-            newTower.transform.position = new Vector2(areaPositionX, areaPositionY);
+            var newTower1 = Instantiate(prefabTower[selected]);
+            newTower1.transform.position = new Vector2(areaPositionX, areaPositionY);
+            var newTower2 = Instantiate(prefabTower[3]);
+            newTower2.transform.position = new Vector2(areaPositionX, areaPositionY);
         }
     }
 }
