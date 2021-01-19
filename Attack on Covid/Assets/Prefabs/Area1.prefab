@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3414039563493767965}
   - component: {fileID: 3414039563493767962}
   - component: {fileID: 3414039563493767963}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Area1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3414039563493767960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.43, y: 1.94, z: 0}
+  m_LocalPosition: {x: -3.43, y: 1.94, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -70,8 +70,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 515e2baae631ec24c8de705e83082623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabPannel:
-  - {fileID: 259993113244831706, guid: 926fac7b9716e7040a6302cf92d4c447, type: 3}
-  - {fileID: 8733321502310390410, guid: 41a24e29a76e9c04099b3c728bde38f6, type: 3}
-  - {fileID: 7218636315055780663, guid: a50ad94fff6a72949b3fa5ed17dfe717, type: 3}
-  mainScript: {fileID: 0}

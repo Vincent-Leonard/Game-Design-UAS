@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7981514863062101052}
   m_Layer: 9
   m_Name: syringe
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,5 +111,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87bf84167b21318438e7ba8639720097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabPeluru: {fileID: 6617527147151545048, guid: 3bfc240387a0d57448dc1a3d64bf4125,
+  prefabPeluru: {fileID: 3823733726061550457, guid: 429cba6836c5f7145ab72462885a3ffb,
     type: 3}

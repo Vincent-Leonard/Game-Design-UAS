@@ -6,10 +6,10 @@ public class GerakanPeluru : MonoBehaviour
 {
     float speed = 0.05f;
     Vector3 moveDir;
-    float BATAS_KANAN = 10f;
-    float BATAS_KIRI = -10f;
-    float BATAS_ATAS = 5f;
-    float BATAS_BAWAH = -5f;
+    float BATAS_KANAN = 15f;
+    float BATAS_KIRI = -15f;
+    float BATAS_ATAS = 10f;
+    float BATAS_BAWAH = -10f;
 
     // Start is called before the first frame update
     void Start()

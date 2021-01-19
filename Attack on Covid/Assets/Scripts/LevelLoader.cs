@@ -8,13 +8,15 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
     public float transitionTime = 1f;
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        //if(Input.GetMouseButtonDown(0))
-        //{
-            //LoadNextLevel();
-        //}
+        int sceneID = SceneManager.GetActiveScene().buildIndex;
+        if(sceneID == 0 || sceneID == 1 || sceneID == 2 || sceneID == 3){
+            SoundController.instance.PlayBGM(BGMType.BGM1);
+        }
+        if(sceneID == 4){
+            SoundController.instance.PlayBGM(BGMType.BGM2);
+        }
     }
 
     public void OnBackToMenu()
@@ -30,6 +32,21 @@ public class LevelLoader : MonoBehaviour
     public void OnHowToPlayButton()
     {
         StartCoroutine(LoadLevel(2));
+    }
+
+    public void OnHowToPlayButton2()
+    {
+        StartCoroutine(LoadLevel(3));
+    }
+
+    public void OnGameOver()
+    {
+        StartCoroutine(LoadLevel(4));
+    }
+
+    public void OnRetry()
+    {
+        StartCoroutine(LoadLevel(0));
     }
 
 

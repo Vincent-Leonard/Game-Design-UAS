@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class capsuletower : MonoBehaviour
 {
@@ -9,20 +8,18 @@ public class capsuletower : MonoBehaviour
 
     private float shootTimerMax;
     private float shootTimer;
-    private float speed;
     private float angle;
     Vector3 moveDir;
     Vector3 direction;
     Collider2D objectCollider;
     bool yourVar;
     int objects;
-    Text txt;
+    Quaternion rotation;
 
     // Start is called before the first frame update
     void Start()
     {
-        speed = 0.01f;
-        shootTimerMax = 0.5f;
+        shootTimerMax = 4f;
     }
 
     // Update is called once per frame
@@ -30,23 +27,23 @@ public class capsuletower : MonoBehaviour
     {
         //bergerak berdasarkan angle
         if(yourVar == true){
-            direction = objectCollider.transform.position - transform.position;
-            direction = objectCollider.transform.InverseTransformDirection(direction);
-            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = rotation;
-
-            moveDir = (objectCollider.transform.position - transform.position).normalized; 
-
-            txt = GameObject.Find("LevelLoader/CrossFade/count").GetComponent<Text>();
-            txt.text = objects + "";
-
-            shootTimer -= Time.deltaTime;
-            if(shootTimer <= 0f)
+            if(objectCollider != null)
             {
-                shootTimer = shootTimerMax;
-                SpawnPeluru();
+                direction = objectCollider.transform.position - transform.position;
+                direction = objectCollider.transform.InverseTransformDirection(direction);
+                angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            
+                rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation = rotation;
+
+                moveDir = (objectCollider.transform.position - transform.position).normalized; 
+
+                shootTimer -= Time.deltaTime;
+                if(shootTimer <= 0f)
+                {
+                    shootTimer = shootTimerMax;
+                    SpawnPeluru();
+                }
             }
         }    
     }
@@ -75,7 +72,9 @@ public class capsuletower : MonoBehaviour
     
     private void SpawnPeluru()
     {
+        SoundController.instance.PlaySound(SFXType.CAPSULE);
         var peluruBaru = Instantiate(prefabPeluru);
+        peluruBaru.transform.rotation = rotation;
         peluruBaru.GetComponent<GerakanPeluru>().TembakDari(transform.localPosition, moveDir);
     }
 }

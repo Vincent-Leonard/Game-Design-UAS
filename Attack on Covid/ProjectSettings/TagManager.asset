@@ -6,7 +6,13 @@ TagManager:
   tags:
   - Waypoints
   - Virus
+  - Peluru3
+  - Peluru2
+  - Peluru1
   - Peluru
+  - Tower
+  - Virus2
+  - Effects
   layers:
   - Default
   - TransparentFX
@@ -18,8 +24,8 @@ TagManager:
   - 
   - virus
   - tower
-  - 
-  - 
+  - area
+  - peluru
   - 
   - 
   - 

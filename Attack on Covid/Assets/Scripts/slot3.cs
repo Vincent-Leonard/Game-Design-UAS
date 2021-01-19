@@ -5,7 +5,7 @@ using UnityEngine;
 public class slot3 : MonoBehaviour
 {
     private GameScript mainScript;
-    int selected = 3;
+    int selected = 4;
 
     public void OnMouseDown()
     {

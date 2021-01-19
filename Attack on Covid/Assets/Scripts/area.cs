@@ -38,9 +38,6 @@ public class area : MonoBehaviour
 
             mainScript = GameObject.Find("GameScript").GetComponent<GameScript>();
             mainScript.OnAreaChosen(areaPosX, areaPosY);
-
-            //bunyiin suara
-            //SoundController.instance.PlaySound(SFXType.LASER);
         }
     }
 
